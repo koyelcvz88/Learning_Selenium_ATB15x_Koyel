@@ -1,4 +1,4 @@
 package com.thetestingacademy;
 
-public class skjfsdjf {
+public class jsadjksdj {
 }
