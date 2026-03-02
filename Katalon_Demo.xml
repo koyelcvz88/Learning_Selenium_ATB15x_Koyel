@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite-Katalon_CuraHealthcare">
+    <test name="KatalonTesting">
+
+        <classes>
+            <class name="Katalon_Task.Katalon_MakeAppointment_Test"/>
+        </classes>
+
+
+    </test>
+
+</suite>
