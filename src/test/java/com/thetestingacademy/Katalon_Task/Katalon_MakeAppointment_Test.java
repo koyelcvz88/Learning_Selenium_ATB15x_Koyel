@@ -1,4 +1,4 @@
-package Katalon_Task;
+package com.thetestingacademy.Katalon_Task;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
