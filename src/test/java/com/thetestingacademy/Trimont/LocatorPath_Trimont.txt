@@ -1,0 +1,488 @@
+username
+ <input placeholder="Username" id="un" name="un" type="text" value="" size="34"
+
+password
+<input placeholder="Password" id="pw" name="pw" type="password" size="34"
+
+signin button
+<input id="jsLoginButton" type="submit" class="btn primary" value="Sign In">
+
+Hello banner validation
+<span class="ColorText---color_custom" style="color: rgb(255, 255, 255) !important;">
+<span class="SizedText---large SizedText---predefined">Hello, AM_CMS!</span></span>
+
+initiate legal request button
+<button type="button" class="Button---btn Button---default_direction
+Button---primary Button---small appian-context-first-in-list
+appian-context-last-in-list Button---icon_start"><span><span>
+<svg focusable="false" tabindex="-1" class="Button---icon" width="448" height="512"
+viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="plus">
+<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67
+0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-
+32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg></span>
+<span>Initiate Legal Request</span></span><span class="Button---accessibilityhidden">
+Initiate Legal Request - Action will initiate new Legal Matter Request</span>
+<span class="Button---accessibilityhidden">Primary Action</span></button>
+
+Request Type
+<div class="DropdownWidget---dropdown_value DropdownWidget---placeholder"
+id="4ae1641e10390daddaf8607d488657d1_value" role="combobox" aria-autocomplete="list" tabindex="0"
+aria-controls="4ae1641e10390daddaf8607d488657d1_list" aria-expanded="false" aria-activedescendant=""
+aria-labelledby="4ae1641e10390daddaf8607d488657d1" aria-required="true">
+<span id="4ae1641e10390daddaf8607d488657d1_value_span">---Select Request Type---</span>
+<svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512"
+viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down">
+<path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z">
+</path></svg></div>
+
+Litigation dropdown value
+<div class="DropdownWidget---dropdown_value" id="4ae1641e10390daddaf8607d488657d1_value" role="combobox"
+aria-autocomplete="list" tabindex="0" aria-controls="4ae1641e10390daddaf8607d488657d1_list"
+aria-expanded="false" aria-activedescendant="" aria-labelledby="4ae1641e10390daddaf8607d488657d1"
+aria-required="true"><span id="4ae1641e10390daddaf8607d488657d1_value_span">Litigation</span>
+<svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512"
+viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down">
+<path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z">
+</path></svg></div>
+
+// Wait for the XPath to find the option in the floating dropdown
+            /*WebElement litigationOption = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector("div.DropdownWidget---dropdown.tether-target span")));
+
+            // verify litigation option
+            if (litigationOption.getText().trim().equals("Litigation")) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", litigationOption);
+                System.out.println("'Litigation' option clicked successfully");
+            } else {
+                System.out.println("Litigation option not found!");
+            }
+            //System.out.println("Request Type 'Litigation' selected successfully."); */
+
+boolean found = false ;
+            for (WebElement option : options) {
+                if (option.getText().trim().equals("Litigation")) {
+                    // Move to the element and click
+                    actions.moveToElement(option).click().perform();
+                    // Click using JS to handle floating divs
+                    //((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+                    System.out.println("'Litigation' option clicked successfully");
+                    found = true;
+                    break;
+                }
+            }
+
+            // Wait for any floating dropdown to appear
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                                By.cssSelector("div.DropdownWidget---dropdown.tether-target")));
+                        System.out.println("Dropdown options rendered");
+
+                        // Find all options (spans) inside the floating container
+                        List<WebElement> options = driver.findElements(By.cssSelector
+                                ("div.DropdownWidget---dropdown.tether-target span"));
+
+                        // Loop through options to find 'Litigation'
+                        for (WebElement option : options) {
+                            if (option.getText().trim().equals("Litigation")) {
+                                // Move to the element and click
+                                actions.moveToElement(option).click().perform();
+                                System.out.println("'Litigation' option clicked successfully");
+                                break;
+                            }
+                        }
+request sub type
+<span id="9538d71dbd675883016f28490838b22a_value_span">---Select Request Sub Type---</span>
+
+// Click the Request Sub Type dropdown
+            WebElement requestSubTypeDropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.cssSelector("//div[@role='combobox'][.//span[contains(text(),'Select Request Sub Type')]]")));
+            requestSubTypeDropdown.click();
+            System.out.println("Request Sub Type dropdown clicked");
+
+            // Step 2: Select the first option via keyboard (Arrow + Enter)
+            actions.sendKeys(Keys.ARROW_DOWN)  // move from placeholder to first real option
+                    .sendKeys(Keys.ENTER)       // select it
+                    .perform();
+
+            System.out.println("Request Sub Type selected successfully");
+
+internal counsel dropdown
+<span id="51fdd34d4b926262b338d83b09fa2cd0_value_span">--- Search Internal Counsel ---</span>
+
+Request segment
+<span id="c61a484b0774c060fdea417d3f99d355_value_span">---Select Request Segment---</span>
+
+Select OC Fees
+<span id="bf732b3555d552bbfe61663f1dda6ed5_value_span">---Select OC Fees Payer---</span>
+
+estimated due date
+<button class="DatePickerWidget---calendar_btn" aria-label="Open Calendar" data-testid=
+"DatePickerWidget-calendarButton"><svg focusable="false" tabindex="-1"
+class="DatePickerWidget---calendar_icon" width="448" height="552" viewBox="0 0 448 552"
+xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="calendar">
+<path d=" M 0 464 C 0 490.5 21.5 512 48 512 L 400 512 C 426.5 512 448 490.5 448 464
+L 448 192 L 0 192 L 0 464 L 0 464 Z  M 320 268 C 320 261.4 325.4 256 332 256 L 372 256 C 378.6 256 384
+261.4 384 268 L 384 308 C 384 314.6 378.6 320 372 320 L 332 320 C 325.4 320 320 314.6 320 308 L 320 268
+L 320 268 Z  M 320 396 C 320 389.4 325.4 384 332 384 L 372 384 C 378.6 384 384 389.4 384 396 L 384 436
+C 384 442.6 378.6 448 372 448 L 332 448 C 325.4 448 320 442.6 320 436 L 320 396 L 320 396 Z  M 192 268
+C 192 261.4 197.4 256 204 256 L 244 256 C 250.6 256 256 261.4 256 268 L 256 308 C 256 314.6 250.6 320 244
+320 L 204 320 C 197.4 320 192 314.6 192 308 L 192 268 L 192 268 Z  M 192 396 C 192 389.4 197.4 384 204 384
+L 244 384 C 250.6 384 256 389.4 256 396 L 256 436 C 256 442.6 250.6 448 244 448 L 204 448 C 197.4 448 192
+442.6 192 436 L 192 396 L 192 396 Z  M 64 268 C 64 261.4 69.4 256 76 256 L 116 256 C 122.6 256 128 261.4
+128 268 L 128 308 C 128 314.6 122.6 320 116 320 L 76 320 C 69.4 320 64 314.6 64 308 L 64 268 L 64 268 Z
+M 64 396 C 64 389.4 69.4 384 76 384 L 116 384 C 122.6 384 128 389.4 128 396 L 128 436 C 128 442.6 122.6
+448 116 448 L 76 448 C 69.4 448 64 442.6 64 436 L 64 396 L 64 396 Z  M 400 64 L 352 64 L 352 16 C 352 7.2
+344.8 0 336 0 L 304 0 C 295.2 0 288 7.2 288 16 L 288 64 L 160 64 L 160 16 C 160 7.2 152.8 0 144 0 L 112 0
+C 103.2 0 96 7.2 96 16 L 96 64 L 48 64 C 21.5 64 0 85.5 0 112 L 0 160 L 448 160 L 448 112 C 448 85.5 426.5
+64 400 64 Z "></path></svg></button>
+
+inner calendar table
+<td><button class="DatePicker---current_month" tabindex="-1" aria-label="Select Saturday, March 28th 2026">
+<span aria-hidden="true">28</span></button></td>
+
+//Select the static date 31 (March)
+            WebElement date31 = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("//button[text()='31']")  // Hardcoded static future date
+                    )
+            );
+            date31.click();
+            System.out.println("Date selected: 31 March");
+// Select the 28th directly
+            WebElement date28 = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("//button[text()='28']")  // Always exists in every month
+                    )
+            );
+// Click using JavaScript to avoid overlay issues
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", date28);
+
+Request Matter
+<input id="9dd1c085d6d243bf6186c085d918fcdc" type="text" class="TextInput---text TextInput---align_start"
+aria-required="true" aria-describedby="9dd1c085d6d243bf6186c085d918fcdc_charLimit 9dd1c085d6d243bf6186c085d918fcdc_currentCount"
+placeholder="" value="" style="padding-right: 56px !important;">
+
+WebElement RequestMatter_TxtBox = driver.findElement(By.cssSelector("input.TextInput---text[type='text']"));
+
+ WebElement RequestMatterTxtBox = new WebDriverWait(driver, Duration.ofSeconds(20))
+                    .until(ExpectedConditions.elementToBeClickable(
+                            By.cssSelector("input.TextInput---text[type='text']"))
+                    );
+                    RequestMatterTxtBox.click();   // ensure focus
+                                RequestMatterTxtBox.sendKeys("Ex_OC_New_Legal_Request");
+OC Firm dropdown
+<div class="DropdownWidget---dropdown_value DropdownWidget---placeholder"
+id="e303991f9851a4e0797602ddea9d9040_value" role="combobox" aria-autocomplete="list" tabindex="0"
+aria-controls="e303991f9851a4e0797602ddea9d9040_list" aria-expanded="false" aria-activedescendant=""
+aria-labelledby="e303991f9851a4e0797602ddea9d9040" aria-required="true"><span
+id="e303991f9851a4e0797602ddea9d9040_value_span">---Select Outside Counsel Firm Name---</span>
+<svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512"
+viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down">
+<path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5
+13.5 192 31.3 192z"></path></svg></div>
+
+ wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//ul[contains(@id,'_list')]")
+            ));
+
+            WebElement firstOption = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("(//ul[contains(@id,'_list')]/li)[1]")
+            ));
+            firstOption.click();
+
+Attorney dropdown
+<div class="DropdownWidget---dropdown_value DropdownWidget---placeholder" id="2c2be79c68b6aa48106079ef212c7cdd_value"
+role="combobox" aria-autocomplete="list" tabindex="0" aria-controls="2c2be79c68b6aa48106079ef212c7cdd_list"
+aria-expanded="false" aria-activedescendant="" aria-labelledby="2c2be79c68b6aa48106079ef212c7cdd"
+aria-required="true"><span id="2c2be79c68b6aa48106079ef212c7cdd_value_span">---Select Contact Attorney---
+</span><svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512"
+viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down">
+<path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192
+31.3 192z"></path></svg></div>
+
+OC Firm name read only
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---center
+elements---global_p" data-testid="ParagraphText-paragraph"><em class="EmphasisText---richtext_emphasis">
+Alston &amp; Bird</em></p>
+
+Attorney name read only
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---center
+elements---global_p" data-testid="ParagraphText-paragraph"><em class="EmphasisText---richtext_emphasis">
+Elizabeth Murphy</em></p>
+
+Is OC conflicted ?
+<div class="DropdownWidget---dropdown_value DropdownWidget---placeholder" id="03338e77bbb19b4d8868eb52bf2d1a
+49_value" role="combobox" aria-autocomplete="list" tabindex="0" aria-controls="03338e77bbb19b4d8868eb52bf2d1
+a49_list" aria-expanded="false" aria-activedescendant="" aria-labelledby="03338e77bbb19b4d8868eb52bf2d1a49"
+aria-required="true"><span id="03338e77bbb19b4d8868eb52bf2d1a49_value_span">---Select Yes/No---</span>
+<svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512"
+viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down">
+<path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6
+213.5 13.5 192 31.3 192z"></path></svg></div>
+
+<div class="DropdownWidget---dropdown_value" id="03338e77bbb19b4d8868eb52bf2d1a49_value" role="combobox" aria-autocomplete="list" tabindex="0" aria-controls="03338e77bbb19b4d8868eb52bf2d1a49_list" aria-expanded="false" aria-activedescendant="" aria-labelledby="03338e77bbb19b4d8868eb52bf2d1a49" aria-required="true"><span id="03338e77bbb19b4d8868eb52bf2d1a49_value_span">No</span><svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg></div>
+<span id="03338e77bbb19b4d8868eb52bf2d1a49_value_span">---Select Yes/No---</span>
+<div class="DropdownWidget---dropdown_value" id="03338e77bbb19b4d8868eb52bf2d1a49_value" role="combobox" aria-autocomplete="list" tabindex="0" aria-controls="03338e77bbb19b4d8868eb52bf2d1a49_list" aria-expanded="false" aria-activedescendant="" aria-labelledby="03338e77bbb19b4d8868eb52bf2d1a49" aria-required="true"><span id="03338e77bbb19b4d8868eb52bf2d1a49_value_span">No</span><svg focusable="false" tabindex="-1" class="DropdownWidget---dropdown_caret" width="320" height="512" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="caret-down"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg></div>
+
+Submit - button
+<button type="button" class="Button---btn Button---default_direction Button---solid appian-context-first-in-list appian-context-last-in-list Button---inModalDialogLayout Button---icon_start"><span><span><svg focusable="false" tabindex="-1" class="Button---icon" width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="check-circle"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg></span><span>Submit</span></span></button>
+
+Confirmation popup
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---center elements---global_p" data-testid="ParagraphText-paragraph">
+<span class="AccentText---color_accent"><span class="SizedText---large SizedText---predefined">Legal Matter Request Initiated! Request Number </span></span><span class="AccentText---color_accent"><span class="SizedText---large SizedText---predefined"><strong class="StrongText---richtext_strong">#LMR00423</strong></span></span></p>
+
+OC Firm name texarea
+<input id="eaaf06b03f69b6858c330bd0ebdc3b00" type="text" class="TextInput---text TextInput---align_start" aria-required="true" placeholder="" value="">
+
+New OC justification
+label - <span class="IconWidget---medium"><svg focusable="false" tabindex="-1" class="IconWidget---svg" width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-owl-icon-name="pen-nib"><path d="M136.6 138.79a64.003 64.003 0 0 0-43.31 41.35L0 460l14.69 14.69L164.8 324.58c-2.99-6.26-4.8-13.18-4.8-20.58 0-26.51 21.49-48 48-48s48 21.49 48 48-21.49 48-48 48c-7.4 0-14.32-1.81-20.58-4.8L37.31 497.31 52 512l279.86-93.29a64.003 64.003 0 0 0 41.35-43.31L416 224 288 96l-151.4 42.79zm361.34-64.62l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.75 18.75-49.15 0-67.91z"></path></svg></span>
+textarea - <div class="ParagraphWidget---container ParagraphWidget---height_short"><textarea id="1b664c5e56092f4d5781c79c9c69ee3e" class="ParagraphWidget---textarea ParagraphWidget---align_start ParagraphWidget---height_short ParagraphWidget---hasCharacterCount ParagraphWidget---inModalDialogLayout" role="textbox" aria-required="true" aria-describedby="1b664c5e56092f4d5781c79c9c69ee3e_charLimit 1b664c5e56092f4d5781c79c9c69ee3e_currentCount" placeholder=""></textarea><div class="ParagraphWidget---character_count ParagraphWidget---character_count_overlay"><span id="1b664c5e56092f4d5781c79c9c69ee3e_charLimit" class="ParagraphWidget---accessibilityhidden">Character limit is 2000.</span><span id="1b664c5e56092f4d5781c79c9c69ee3e_currentCount" class="ParagraphWidget---accessibilityhidden" aria-live="polite" aria-atomic="true">0 of 2000 entered.</span><span class="ParagraphWidget---accessibilityhidden" role="alert"></span><span aria-hidden="true">0/2000</span></div><div class="ParagraphWidget---textarea_print ParagraphWidget---align_start ParagraphWidget---height_short" placeholder=""></div></div>
+
+<textarea id="1b664c5e56092f4d5781c79c9c69ee3e" class="ParagraphWidget---textarea ParagraphWidget---align_start ParagraphWidget---height_short ParagraphWidget---hasCharacterCount ParagraphWidget---inModalDialogLayout" role="textbox" aria-required="true" aria-describedby="1b664c5e56092f4d5781c79c9c69ee3e_charLimit 1b664c5e56092f4d5781c79c9c69ee3e_currentCount" placeholder=""></textarea>
+
+column containing new OC fields
+<div class="ContentLayout---content_layout ContentLayout---padding_less ContentLayout---margin_above_none"><div class="MultiColumnLayout---column_layout MultiColumnLayout---margin_above_none MultiColumnLayout---stack_when_phone appian-context-last-in-list MultiColumnLayout---show_dividers" role="presentation"><div class
+
+Attorney name editable
+<strong class="StrongText---richtext_strong">  Attorney Name</strong>
+
+Phone editable
+<strong class="StrongText---richtext_strong">  Phone</strong>
+
+email editable
+<strong class="StrongText---richtext_strong">  Email</strong>
+
+Address label
+<strong class="StrongText---richtext_strong">  Address</strong>
+
+Homepage Request id
+<a class="LinkedItem---standalone_richtext_link elements---global_a" href="https://trimont-test.appiancloud.com/suite/sites/vendor-req/page/home/record/cAQzfizaBciAf73-7nOcBrSVQFl5R__mvj-rK5CP3wAazk4e9fk5LSmYnKcWoJvsZ1u-cD5KTO3yqlAmC8IU6YwFx_CA1Jpo3509HDHu-jv7V2wZhXGrPeZaM_ipOQMbgDjHBCmUIg/view/summary">LMR00423 | Ex_OC_New_Legal_Request</a>
+
+Summary page -----------------------------------------
+
+request Type
+<div class="" aria-labelledby="64718fe48a5c1a4ae5991e5157535ec8"><p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" data-testid="ParagraphText-paragraph">Litigation</p></div>
+
+request sub type
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" data-testid="ParagraphText-paragraph">CMS</p>
+
+matter
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" aria-labelledby="f414ced588998178e8c6fe394fa8303b" data-testid="ParagraphText-paragraph">Ex_OC_New_Legal_Request</p>
+
+due date
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" data-testid="ParagraphText-paragraph">28-Mar-2026</p>
+
+internal counsel
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" aria-labelledby="dc56fa6c35b7b9e2e435b83dcdd3d7d6" data-testid="ParagraphText-paragraph">Annie George</p>
+
+request segment
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" aria-labelledby="59d19f7b26e8e8d6463ed2455166a95c" data-testid="ParagraphText-paragraph">Assumptions</p>
+
+OC fees payer
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start elements---global_p" aria-labelledby="b3095e4cb5cab2c8ff63cb6acfe1f186" data-testid="ParagraphText-paragraph">Trimont</p>
+
+OC firm name
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---center elements---global_p" data-testid="ParagraphText-paragraph"><em class="EmphasisText---richtext_emphasis">Alston &amp; Bird</em></p>
+
+attorney name
+<p class="ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---center elements---global_p" data-testid="ParagraphText-paragraph"><em class="EmphasisText---richtext_emphasis">Elizabeth Murphy</em></p>
+
+Allure.step("Selecting second option for 'Is OC Conflicted?'", () -> {
+
+            WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//div[contains(@class,'DropdownWidget---dropdown_value') and contains(@class,'DropdownWidget---placeholder')]")
+            ));
+
+            dropdown.click();
+
+            // Wait until dropdown list becomes visible
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//ul[contains(@id,'" + dropdown.getAttribute("aria-controls") + "')]")
+            ));
+
+            // Move to second option: ARROW_DOWN twice
+            dropdown.sendKeys(Keys.ARROW_DOWN); // first option
+            dropdown.sendKeys(Keys.ARROW_DOWN); // second option
+            dropdown.sendKeys(Keys.ENTER);
+
+            System.out.println("'Is OC Conflicted?' second option selected successfully.");
+
+        });
+
+Allure.step("Selecting second option for 'Is OC Conflicted?'", () -> {
+
+                    WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                            By.xpath("//div[contains(@class,'DropdownWidget---dropdown_value') and contains(@class,'DropdownWidget---placeholder')]")
+                    ));
+
+                    // Open the dropdown
+                    dropdown.click();
+
+                    // Wait until dropdown is expanded
+                    wait.until(ExpectedConditions.attributeToBe(dropdown, "aria-expanded", "true"));
+
+                    // Use Actions to send keys to focused element
+                    actions.sendKeys(Keys.ARROW_DOWN).perform(); // first option
+                    actions.sendKeys(Keys.ARROW_DOWN).perform(); // second option
+                    actions.sendKeys(Keys.ENTER).perform();      // select second option
+
+                    System.out.println("'Is OC Conflicted?' second option selected successfully.");
+                });
+
+Allure.step("Selecting second option for 'Is OC Conflicted?'", () -> {
+
+                            // Locate and click the dropdown
+                            WebElement dropdown = driver.findElement(
+                                    By.xpath("//div[contains(@class,'DropdownWidget---dropdown_value') and contains(@class,'DropdownWidget---placeholder')]")
+                            );
+                            dropdown.click();
+
+                            // Give the dropdown some time to open
+                            Thread.sleep(1000);
+
+                            // Use Actions to send keys to select second option
+                            actions.sendKeys(Keys.ARROW_DOWN).perform(); // first option
+                            Thread.sleep(300);
+                            actions.sendKeys(Keys.ARROW_DOWN).perform(); // second option
+                            Thread.sleep(300);
+                            actions.sendKeys(Keys.ENTER).perform();      // select second option
+
+                            // Wait a bit to update the selection
+                            Thread.sleep(500);
+
+                            // Validate selected value
+                            String selectedValue = dropdown.findElement(By.tagName("span")).getText();
+                            System.out.println("'Is OC Conflicted?' selected value: " + selectedValue);
+
+                        });
+
+Allure.step("Verify generated Legal Request ID", () -> {
+
+                                    String expectedRequestMatter = "Ex_OC_New_Legal_Request";
+
+                                    WebElement generatedIdElement = driver.findElement(
+                                            By.xpath("//*[contains(text(),'LMR00')]")
+                                    );
+
+                                    String generatedId = generatedIdElement.getText();
+                                    System.out.println("Generated ID: " + generatedId);
+
+                                    Assert.assertFalse(generatedId.isEmpty(), "Generated ID is missing!");
+
+                                    // FormattedLM ID: LMR00 followed by digits, then ' | ' + Request Matter
+                                    String LMFormattedID = "LMR00\\d+ \\| " + expectedRequestMatter;
+                                    Assert.assertTrue(generatedId.matches(LMFormattedID),
+                                            "Generated ID format is incorrect: " + generatedId);
+
+                                    System.out.println("Generated ID format verified successfully: " + generatedId);
+                                });
+
+Allure.step("Enter OC Firm Name", () -> {
+
+            // Locate the label containing "OC Firm Name"
+            WebElement OC_label = driver.findElement(
+                    By.xpath("//strong[normalize-space()='OC Firm Name']")
+            );
+
+            // Find the input field that follows this label
+            WebElement OC_inputField = OC_label.findElement(
+                    By.xpath("../../following-sibling::input | ../../following::input[1]")
+            );
+
+            // Click and enter text
+            OC_inputField.click();
+            Thread.sleep(300);
+            OC_inputField.clear();
+            OC_inputField.sendKeys("Auto OC Firm Name");
+
+            System.out.println("OC Firm Name entered successfully.");
+        });
+
+Allure.step("Enter OC Firm Name (React-friendly)", () -> {
+
+            // 1 Locate the label
+            WebElement OC_label = driver.findElement(
+                    By.xpath("//strong[normalize-space()='OC Firm Name']")
+            );
+
+            // 2 Locate the input field —  wrapped inside a div
+            WebElement OC_inputField = OC_label.findElement(
+                    By.xpath("../../following::input[1]")
+            );
+
+            // 3 Click first to focus
+            OC_inputField.click();
+            Thread.sleep(300);
+
+            // 4 Use Actions to type (works with React-controlled inputs)
+            actions.moveToElement(OC_inputField).click().sendKeys("Demo OC Firm Name").perform();
+            Thread.sleep(300);
+
+            System.out.println("OC Firm Name entered successfully.");
+        });
+
+Allure.step("Enter OC Firm Name", () -> {
+
+            // Locate the entire dropdown/input wrapper by label
+            WebElement OC_fieldWrapper = driver.findElement(
+                    By.xpath("//strong[normalize-space()='OC Firm Name']/ancestor::p/following-sibling::input | //strong[normalize-space()='OC Firm Name']/ancestor::p/following::div[contains(@class,'TextInput')]")
+            );
+
+            // Click to focus the field
+            OC_fieldWrapper.click();
+            Thread.sleep(300);
+
+            // Send keys to currently focused element (not the hidden input)
+            actions.sendKeys("Demo OC Firm Name").perform();
+            Thread.sleep(300);
+
+            System.out.println("OC Firm Name entered successfully.");
+        });
+
+Allure.step("Enter text into Paragraph field", () -> {
+
+            // 1️⃣ Locate the label icon (or use some unique identifier)
+            WebElement labelIcon = driver.findElement(
+                    By.xpath("//span[.//svg[contains(@data-owl-icon-name,'pen-nib')]]")
+            );
+
+            // 2️⃣ Move to the textarea container following the label
+            WebElement textArea = labelIcon.findElement(
+                    By.xpath("following::textarea[1]")
+            );
+
+            // 3️⃣ Click to focus
+            textArea.click();
+            Thread.sleep(300); // allow Appian to activate the field
+
+            // 4️⃣ Type using Actions (works even if Appian has React-controlled wrappers)
+            actions.sendKeys("This is a demo input for the Paragraph field.").perform();
+            Thread.sleep(300);
+
+            System.out.println("Paragraph text entered successfully.");
+        });
+
+Allure.step("Enter text into Paragraph field (Appian-safe)", () -> {
+
+            // 1️⃣ Locate the label icon (pen-nib) if needed
+            WebElement labelIcon = driver.findElement(
+                    By.xpath("//span[.//svg[contains(@data-owl-icon-name,'pen-nib')]]")
+            );
+
+            // 2️⃣ Locate the visible editable div that actually receives text
+            WebElement editableDiv = labelIcon.findElement(
+                    By.xpath("following::div[contains(@class,'ParagraphWidget---textarea_print')][1]")
+            );
+
+            // 3️⃣ Click to focus
+            editableDiv.click();
+            Thread.sleep(300);
+
+            // 4️⃣ Type text using Actions
+            actions.sendKeys("This is a demo input for the Paragraph field.").perform();
+            Thread.sleep(300);
+
+            System.out.println("Paragraph field text entered successfully.");
+        });
+
+
+to delete old allure results - rm -rf allure-results
