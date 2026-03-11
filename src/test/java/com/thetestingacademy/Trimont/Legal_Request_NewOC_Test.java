@@ -52,7 +52,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             requestMatterNew = "New_OC_New_Legal_Request";
             //actions.click(requestMatterField).sendKeys(requestMatterNew).perform();
             requestMatterNewTxtBox.sendKeys(requestMatterNew);
+
+            // Print to console
             System.out.println("Request Matter entered: " + requestMatterNew);
+            // Also log in Allure
+            Allure.step("Request Matter entered: " + requestMatterNew);
         });
 
         // -------- Outside Counsel Dropdown --------
@@ -69,9 +73,13 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
 
             // Store the selected firm
             selectedOCFirmNew = "Request New";
-            System.out.println("Outside Counsel Firm selected: " + selectedOCFirmNew);
 
-                         /*WebElement dropdown = wait.until(
+            // Print to console
+            System.out.println("Outside Counsel Firm selected: " + selectedOCFirmNew);
+            // Also log in Allure
+            Allure.step("Outside Counsel Firm selected: " + selectedOCFirmNew);
+
+             /*WebElement dropdown = wait.until(
                                 ExpectedConditions.visibilityOfElementLocated(
                                         By.xpath("//span[normalize-space()='---Select Outside Counsel Firm Name---']")
                                 )
@@ -107,7 +115,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             ocFirmName = "Auto New OC Firm";
             //actions.click(firmField).sendKeys(Keys.CONTROL + "a").sendKeys(Keys.DELETE)
             //.sendKeys(ocFirmName).perform();
+
+            // Print to console
             System.out.println("OC Firm Name entered: " + ocFirmName);
+            // Also log in Allure
+            Allure.step("OC Firm Name entered: " + ocFirmName);
         });
 
         // -------- Justification --------
@@ -119,7 +131,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             actions.click(jusLabel).sendKeys(Keys.TAB).sendKeys("Outside counsel engaged for strategic legal support.").perform();
             Thread.sleep(1000);
             ocJustification = "Outside counsel engaged for strategic legal support.";
+
+            // Print to console
             System.out.println("Justification entered: " + ocJustification);
+            // Also log in Allure
+            Allure.step("Justification entered: " + ocJustification);
         });
 
         // -------- Attorney Name --------
@@ -131,7 +147,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             actions.click(attLabel).sendKeys(Keys.TAB).sendKeys("Auto Attorney").perform();
             Thread.sleep(1000);
             attorneyName = "Auto Attorney";
+
+            // Print to console
             System.out.println("Attorney Name entered:" + attorneyName);
+            // Also log in Allure
+            Allure.step("Attorney Name entered: " + attorneyName);
         });
 
         // -------- Phone Entry --------
@@ -143,7 +163,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             actions.click(phLabel).sendKeys(Keys.TAB).sendKeys("1234567890").perform();
             Thread.sleep(1000);
             phoneNumber = "1234567890";
+
+            // Print to console
             System.out.println("Phone entered: " + phoneNumber);
+            // Also log in Allure
+            Allure.step("Phone entered: " + phoneNumber);
         });
 
         // -------- Phone Validation --------
@@ -152,7 +176,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             String phoneValue = phoneField.getAttribute("value").replaceAll("[^0-9]", "");
             Thread.sleep(1000);
             Assert.assertTrue(phoneValue.matches("\\d{10}"));
+
+            // Print to console
             System.out.println("Phone validated successfully" + phoneValue);
+            // Also log in Allure
+            Allure.step("Phone validated successfully: " + phoneValue);
         });
 
         // -------- Email Entry --------
@@ -164,7 +192,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             actions.click(emailLabel).sendKeys(Keys.TAB).sendKeys("autouser@mail.com").perform();
             Thread.sleep(1000);
             emailAddress = "autouser@mail.com";
+
+            // Print to console
             System.out.println("Email entered: " + emailAddress);
+            // Also log in Allure
+            Allure.step("Email entered: " + emailAddress);
         });
 
         // -------- Email Validation --------
@@ -173,7 +205,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             String emailValue = emailField.getAttribute("value");
             Thread.sleep(1000);
             Assert.assertTrue(emailValue.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"));
+
+            // Print to console
             System.out.println("Email validated successfully" +emailValue);
+            // Also log in Allure
+            Allure.step("Email validated successfully: " + emailValue);
         });
 
         // -------- City --------
@@ -192,7 +228,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             CityLabel.sendKeys("Sitka");
             Thread.sleep(1000);
             city = "Sitka";
+
+            // Print to console
             System.out.println("City entered: " + city);
+            // Also log in Allure
+            Allure.step("City entered: " + city);
         });
 
         // -------- State --------
@@ -219,7 +259,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             StateLabel.sendKeys(Keys.ENTER);
             Thread.sleep(1000);
             state = "AL";
+
+            // Print to console
             System.out.println("State selected: " + state);
+            // Also log in Allure
+            Allure.step("State selected: " + state);
         });
 
         // -------- Submit --------
@@ -232,7 +276,11 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
             //js.executeScript("arguments[0].scrollIntoView(true);", submitBtn);
             submitBtn.click();
             Thread.sleep(2000);
+
+            // Print to console
             System.out.println("Submit clicked successfully");
+            // Also log in Allure
+            Allure.step("Submit clicked successfully");
         });
 
     }

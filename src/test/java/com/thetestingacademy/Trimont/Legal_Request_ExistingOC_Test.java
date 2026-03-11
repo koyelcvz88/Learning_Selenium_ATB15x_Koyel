@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -46,7 +47,11 @@ public class Legal_Request_ExistingOC_Test extends Legal_Request_Form_Fields_Tes
             requestMatterExTxtBox.click();
             requestMatterEx = "Ex_OC_New_Legal_Request";  // store value for summary
             requestMatterExTxtBox.sendKeys(requestMatterEx);
+
+            // Print to console
             System.out.println("Request Matter entered: " + requestMatterEx);
+            // Also log in Allure
+            Allure.step("Request Matter entered: " + requestMatterEx);
         });
 
         // Select Outside Counsel Firm
@@ -62,7 +67,50 @@ public class Legal_Request_ExistingOC_Test extends Legal_Request_Form_Fields_Tes
 
             // Store the selected firm
             selectedOCFirm = "Alston & Bird";
+
+            // Print to console
             System.out.println("Outside Counsel Firm selected: " + selectedOCFirm);
+            // Also log in Allure
+            Allure.step("Outside Counsel Firm selected: " + selectedOCFirm);
+        });
+
+        // Validate Selected Outside Counsel Firm is displayed as readonly
+        Allure.step("Validate OC Firm Name matches the selected Outside Counsel Firm", () -> {
+
+            WebElement firmField = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//strong[normalize-space()='OC Firm Name']")
+                    )
+            );
+
+            WebElement firmValue = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//strong[normalize-space()='OC Firm Name']/following::em[contains(@class,'EmphasisText')][1]")
+                    )
+            );
+
+            // Wait until the value is populated
+            wait.until(ExpectedConditions.textToBePresentInElement(firmValue, selectedOCFirm));
+
+            String actualFirm = firmValue.getText().trim();
+
+            Thread.sleep(1000);
+            System.out.println("Expected Firm: " + selectedOCFirm);
+            System.out.println("Actual Firm: " + actualFirm);
+            Thread.sleep(1000);
+
+            if (actualFirm.equals(selectedOCFirm)) {
+                // Print to console
+                System.out.println("Validation PASSED:OC Firm Name Dropdown selection matches read-only field.");
+                // Also log in Allure
+                Allure.step("Validation PASSED: OC Firm Name Dropdown selection matches read-only field.");
+            } else {
+                // Print to console
+                System.out.println("Validation FAILED:OC Firm Name Dropdown selection does not match read-only field.");
+                // Also log in Allure
+                Allure.step("Validation FAILED: OC Firm Name Dropdown selection does not match read-only field.");
+                Assert.fail("OC Firm Name mismatch. Expected: " + selectedOCFirm + " but found: " + actualFirm);
+            }
         });
 
         // Select first Contact Attorney
@@ -78,7 +126,41 @@ public class Legal_Request_ExistingOC_Test extends Legal_Request_Form_Fields_Tes
 
             // Store selected attorney
             selectedAttorney = "Elizabeth Murphy";
+
+            // Print to console
             System.out.println("Contact Attorney selected: " + selectedAttorney);
+            // Also log in Allure
+            Allure.step("Contact Attorney selected: " + selectedAttorney);
+        });
+
+        // Validate Selected Attorney is displayed as readonly
+        Allure.step("Validate Contact Attorney matches the selected dropdown value", () -> {
+
+            // Wait until the selected attorney appears in the read-only field
+            WebElement attorneyValue = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//em[normalize-space()='" + selectedAttorney + "']")
+                    )
+            );
+
+            String actualAttorney = attorneyValue.getText().trim();
+
+            System.out.println("Expected Attorney: " + selectedAttorney);
+            System.out.println("Actual Attorney: " + actualAttorney);
+
+            if (actualAttorney.equals(selectedAttorney)) {
+                // Print to console
+                System.out.println("Validation PASSED: Attorney Dropdown selection matches read-only field.");
+                // Also log in Allure
+                Allure.step("Validation PASSED: Attorney Dropdown selection matches read-only field.");
+            } else {
+                // Print to console
+                System.out.println("Validation FAILED:Attorney Dropdown selection does not match read-only field.");
+                // Also log in Allure
+                Allure.step("Validation FAILED: Attorney Dropdown selection does not match read-only field.");
+                Assert.fail("Contact Attorney mismatch. Expected: " + selectedAttorney + " but found: " + actualAttorney);
+            }
+
         });
 
         // Select 'Is OC Conflicted?'
@@ -98,7 +180,11 @@ public class Legal_Request_ExistingOC_Test extends Legal_Request_Form_Fields_Tes
 
             // Store selected value
             isOCConflicted = dropdown.findElement(By.tagName("span")).getText();
+
+            // Print to console
             System.out.println("'Is OC Conflicted?' selected value: " + isOCConflicted);
+            // Also log in Allure
+            Allure.step("'Is OC Conflicted?' selected value: " + isOCConflicted);
         });
 
         // Click Submit button
@@ -108,7 +194,11 @@ public class Legal_Request_ExistingOC_Test extends Legal_Request_Form_Fields_Tes
             );
             submitBtn.click();
             Thread.sleep(2000);
+
+            // Print to console
             System.out.println("Submit button clicked successfully.");
+            // Also log in Allure
+            Allure.step("Submit button clicked successfully.");
         });
     }
 

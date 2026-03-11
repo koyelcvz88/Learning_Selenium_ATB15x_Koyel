@@ -52,9 +52,24 @@ public class Login_Test {
                     )
             );
             String bannerText = banner.getText();
+            // Log the banner text directly in Allure
+            Allure.step("Banner Text: " + bannerText);
+            // Print to console
             System.out.println("Banner Text: " + bannerText);
             Thread.sleep(2000);
-            Assert.assertEquals(bannerText, "Hello, AM_CMS!");
+            //Assert.assertEquals(bannerText, "Hello, AM_CMS!");
+            // Assertion with try-catch to log success/failure
+            try {
+                Assert.assertEquals(bannerText, "Hello, AM_CMS!");
+                // Runs only if assertion passes
+                System.out.println("Validation PASSED: Banner text is correct.");
+                Allure.step("Validation PASSED: Banner text is correct.");
+            } catch (AssertionError e) {
+                // Runs if assertion fails
+                System.out.println("Validation FAILED: Banner text is incorrect.");
+                Allure.step("Validation FAILED: Banner text is incorrect.");
+                throw e; // re-throw to make the test fail
+            }
         });
     }
 

@@ -52,7 +52,10 @@ public class Legal_Request_Initiation_Test extends Login_Test {
             // Wait until clickable
             wait.until(ExpectedConditions.elementToBeClickable(initiateBtn));
 
+            // Print to console
             System.out.println("Button found. Clicking now.");
+            // Also log in Allure
+            Allure.step("Button found. Clicking now.");
 
             try {
                 initiateBtn.click();
@@ -68,8 +71,11 @@ public class Legal_Request_Initiation_Test extends Login_Test {
                     )
             );
 
+            // Print to console
             System.out.println("Initiate Legal Request clicked, form loaded: "
                     + legalRequestFormHeader.getText());
+            // Also log in Allure
+            Allure.step("Initiate Legal Request clicked, form loaded: " );
         });
     }
 

@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 @Epic("VenReq Automation Suite")
 @Feature("Legal Request Module")
@@ -73,7 +76,11 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dropdown.click();
             actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
             requestType = "Litigation";
+
+            // Print to console
             System.out.println("'" + requestType + "' option selected.");
+            // Also log in Allure
+            Allure.step("'" + requestType + "' option selected.");
         });
     }
 
@@ -84,7 +91,11 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dropdown.click();
             dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
             requestSubType = "CMS";
+
+            // Print to console
             System.out.println(requestSubType + " option selected.");
+            // Also log in Allure
+            Allure.step(requestSubType + " option selected.");
         });
     }
 
@@ -95,7 +106,11 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dropdown.click();
             dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
             internalCounsel = "Annie George";
+
+            // Print to console
             System.out.println(internalCounsel + " option selected.");
+            // Also log in Allure
+            Allure.step(internalCounsel + " option selected.");
         });
     }
 
@@ -106,7 +121,11 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dropdown.click();
             dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
             requestSegment = "Assumptions";
+
+            // Print to console
             System.out.println(requestSegment + " option selected.");
+            // Also log in Allure
+            Allure.step(requestSegment + " option selected.");
         });
     }
 
@@ -117,11 +136,47 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dropdown.click();
             dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
             ocFeesPayer = "Trimont";
+
+            // Print to console
             System.out.println(ocFeesPayer + " option selected.");
+            // Also log in Allure
+            Allure.step(ocFeesPayer + " option selected.");
         });
     }
 
     public void selectDueDate() {
+        Allure.step("Selecting Due Date", () -> {
+
+            // Open the calendar
+            WebElement calendarBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.cssSelector("button.DatePickerWidget---calendar_btn")));
+            calendarBtn.click();
+
+            // Get today's date
+            LocalDate today = LocalDate.now();
+            String dayOfWeek = today.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH); // e.g., "Saturday"
+            int dayOfMonth = today.getDayOfMonth(); // e.g., 28
+            String month = today.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH); // e.g., "March"
+            int year = today.getYear(); // e.g., 2026
+
+            // Construct the aria-label exactly as in your date button
+            String ariaLabel = String.format("Select %s, %s %dth %d", dayOfWeek, month, dayOfMonth, year);
+
+            // Locate the date button dynamically
+            WebElement todayDateBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//button[@aria-label='" + ariaLabel + "']")));
+            todayDateBtn.click();
+
+            dueDate = String.format("%d %s %d", dayOfMonth, month, year);
+
+            // Print to console
+            System.out.println("Date selected today: " + dueDate);
+            // Also log in Allure
+            Allure.step("Date selected today: " + dueDate);
+        });
+    }
+
+    /* public void selectDueDate() {
         Allure.step("Selecting Due Date", () -> {
             WebElement calendarBtn = wait.until(ExpectedConditions.elementToBeClickable(
                     By.cssSelector("button.DatePickerWidget---calendar_btn")));
@@ -133,7 +188,7 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
             dueDate = "28 March 2026";
             System.out.println("Date selected: " + dueDate);
         });
-    }
+    } */
 
     // Optional @Test if I want to run TC2 standalone
 
