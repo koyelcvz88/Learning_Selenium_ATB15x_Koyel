@@ -1,4 +1,4 @@
-package com.thetestingacademy.XPath;
+package com.thetestingacademy.XPath.WebTables;
 
 import io.qameta.allure.*;
 import org.openqa.selenium.By;

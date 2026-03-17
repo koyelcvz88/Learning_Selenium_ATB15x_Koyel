@@ -4,7 +4,7 @@
     <test name="KatalonTesting">
 
         <classes>
-            <class name="Katalon_Task.Katalon_MakeAppointment_Test"/>
+            <class name="com.thetestingacademy.Katalon_Task.Katalon_MakeAppointment_Test"/>
         </classes>
 
 

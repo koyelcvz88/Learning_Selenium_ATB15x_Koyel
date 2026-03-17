@@ -1,4 +1,4 @@
-package com.thetestingacademy.XPath;
+package com.thetestingacademy.XPath.WebTables;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
