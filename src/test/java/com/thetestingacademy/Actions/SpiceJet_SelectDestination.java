@@ -21,9 +21,9 @@ public class SpiceJet_SelectDestination {
                 ("//div[@data-testid=\"to-testID-destination\"]/div/div/input"));
 
         Actions actions = new Actions(driver);
-        actions.moveToElement(origin().sendKeys("BLR"))
-                .moveToElement(destination().sendKeys("DEL"))
-                .build().perform();
+        actions.moveToElement(origin).click().sendKeys("BLR");
+                actions.moveToElement(destination).sendKeys("DEL");
+                actions.build().perform();
     }
 
 }
