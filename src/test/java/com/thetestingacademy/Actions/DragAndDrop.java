@@ -14,7 +14,8 @@ public class DragAndDrop {
         Actions actions = new Actions(driver);
         WebElement from = driver.findElement(By.id("column-a"));
         WebElement to = driver.findElement(By.id("column-b"));
-        actions.dragAndDrop(from,to).build().perform();
+        actions.dragAndDrop(from, to).build().perform();
+    }
 }
 
 
