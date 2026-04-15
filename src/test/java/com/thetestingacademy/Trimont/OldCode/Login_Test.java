@@ -1,4 +1,4 @@
-package com.thetestingacademy.Trimont;
+package com.thetestingacademy.Trimont.OldCode;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;

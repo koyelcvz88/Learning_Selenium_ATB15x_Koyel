@@ -1,26 +1,30 @@
-package com.thetestingacademy.Trimont;
+package com.thetestingacademy.Trimont.POM_Code.pages;
 
-import io.qameta.allure.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import com.thetestingacademy.Trimont.POM_Code.utils.ScreenshotUtil;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-@Epic("VenReq Automation Suite")
-@Feature("Legal Request Module")
-@Story("Fill Legal Request Form")
-public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Test {
+public class LegalRequestFormPage {
 
-    private WebDriverWait wait;
-    private Actions actions;
+    WebDriver driver;
+    WebDriverWait wait;
+    Actions actions;
+    JavascriptExecutor js;
+
+    public LegalRequestFormPage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        this.actions = new Actions(driver);
+        this.js = (JavascriptExecutor) driver;
+    }
 
     // Variables to store selected data for validation later
     protected String requestType;
@@ -30,121 +34,100 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
     protected String ocFeesPayer;
     protected String dueDate;
 
-    // Initialize wait and actions
-    private void initUtils() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        actions = new Actions(driver);
-    }
 
-    /**
-     * Public method to fill the entire Legal Request Form
-     * Can be called from workflow runner
-     */
-    @Owner("Koyel")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("Testcase 2 - Verify user is able to Enter Legal Request Form Fields")
-    public void fillLegalRequestForm() throws InterruptedException {
-        initUtils();
+    // ---------------- UTILITY ----------------
 
-        // Call TC1 logic to open the form
-        initiateLegalRequest();
+    /*private void click(By locator) {
+        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", el);
 
-        selectRequestType();
-        Thread.sleep(2000);
+        try {
+            el.click();
+        } catch (Exception e) {
+            js.executeScript("arguments[0].click();", el);
+        }
+    } */
 
-        selectRequestSubType();
-        Thread.sleep(2000);
 
-        selectInternalCounsel();
-        Thread.sleep(2000);
+    // ---------------- ACTION METHODS ----------------
 
-        selectRequestSegment();
-        Thread.sleep(2000);
-
-        selectOCFeesPayer();
-        Thread.sleep(2000);
-
-        selectDueDate();
-        Thread.sleep(2000);
-    }
-    // ------------------- Individual Steps -------------------
-
-    public void selectRequestType() {
+    public void enterFormFields() {
+        // Request Type
         Allure.step("Selecting Request Type from dropdown", () -> {
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@role='combobox'][.//span[normalize-space()='---Select Request Type---']]")));
             dropdown.click();
+            Thread.sleep(2000);
             actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
-            requestType = "Litigation";
+            requestType = "Litigation"; // Value selected
 
             // Print to console
             System.out.println("'" + requestType + "' option selected.");
             // Also log in Allure
             Allure.step("'" + requestType + "' option selected.");
         });
-    }
 
-    public void selectRequestSubType() {
+        // Request SubType
         Allure.step("Selecting Request SubType from dropdown", () -> {
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@role='combobox'][.//span[contains(text(),'Select Request Sub Type')]]")));
             dropdown.click();
-            dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-            requestSubType = "CMS";
+            Thread.sleep(2000);
+            actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+            requestSubType = "CMS"; // Value selected
 
             // Print to console
-            System.out.println(requestSubType + " option selected.");
+            System.out.println("'" + requestSubType + "' option selected.");
             // Also log in Allure
-            Allure.step(requestSubType + " option selected.");
+            Allure.step("'" + requestSubType + "' option selected.");
         });
-    }
 
-    public void selectInternalCounsel() {
+        // Internal Counsel
         Allure.step("Selecting Internal Counsel from dropdown", () -> {
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@role='combobox'][.//span[contains(text(),'Search Internal Counsel')]]")));
+            Thread.sleep(2000);
             dropdown.click();
-            dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-            internalCounsel = "Annie George";
+            Thread.sleep(2000);
+            actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+            internalCounsel = "Annie George"; // Value selected
 
             // Print to console
-            System.out.println(internalCounsel + " option selected.");
+            System.out.println("'" + internalCounsel + "' option selected.");
             // Also log in Allure
-            Allure.step(internalCounsel + " option selected.");
+            Allure.step("'" + internalCounsel + "' option selected.");
         });
-    }
 
-    public void selectRequestSegment() {
+        // Request Segment
         Allure.step("Selecting Request Segment from dropdown", () -> {
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@role='combobox'][.//span[contains(text(),'Select Request Segment')]]")));
             dropdown.click();
-            dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-            requestSegment = "Assumptions";
+            Thread.sleep(2000);
+            actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+            requestSegment = "Assumptions"; // Value selected
 
             // Print to console
-            System.out.println(requestSegment + " option selected.");
+            System.out.println("'" + requestSegment + "' option selected.");
             // Also log in Allure
-            Allure.step(requestSegment + " option selected.");
+            Allure.step("'" + requestSegment + "' option selected.");
         });
-    }
 
-    public void selectOCFeesPayer() {
-        Allure.step("Selecting OC Fees Payer", () -> {
+        // OC Fees Payer
+        Allure.step("Selecting OC Fees Payer from dropdown", () -> {
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@role='combobox'][.//span[contains(text(),'---Select OC Fees Payer---')]]")));
             dropdown.click();
-            dropdown.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-            ocFeesPayer = "Trimont";
+            Thread.sleep(2000);
+            actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+            ocFeesPayer = "Trimont"; // Value selected
 
             // Print to console
-            System.out.println(ocFeesPayer + " option selected.");
+            System.out.println("'" + ocFeesPayer + "' option selected.");
             // Also log in Allure
-            Allure.step(ocFeesPayer + " option selected.");
+            Allure.step("'" + ocFeesPayer + "' option selected.");
         });
-    }
 
-    public void selectDueDate() {
         Allure.step("Selecting Due Date", () -> {
 
             // Open the calendar
@@ -176,25 +159,20 @@ public class Legal_Request_Form_Fields_Test extends Legal_Request_Initiation_Tes
         });
     }
 
-    /* public void selectDueDate() {
-        Allure.step("Selecting Due Date", () -> {
-            WebElement calendarBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.cssSelector("button.DatePickerWidget---calendar_btn")));
-            calendarBtn.click();
+    // ---------------- MASTER METHOD ----------------
 
-            WebElement date28 = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//button[@aria-label='Select Saturday, March 28th 2026']")));
-            date28.click();
-            dueDate = "28 March 2026";
-            System.out.println("Date selected: " + dueDate);
+    public void fillLegalRequestForm() {
+        Allure.step("Filling Legal Request Form", () -> {
+            ScreenshotUtil.takeScreenshot(driver, "Form Start");
+
+            // Call the enterFormFields method to fill all fields
+            enterFormFields();
+
+            ScreenshotUtil.takeScreenshot(driver, "Form Completed");
+
+            System.out.println("Legal Request Form Completed");
+            Allure.step("Legal Request Form Completed");
+            ScreenshotUtil.takeScreenshot(driver, "Legal Request Form Completed");
         });
-    } */
-
-    // Optional @Test if I want to run TC2 standalone
-
-   /* @Test
-    public void legalRequest_Form_Fields_Test_Run() throws InterruptedException {
-        fillLegalRequestForm();
-    } */
-
+    }
 }

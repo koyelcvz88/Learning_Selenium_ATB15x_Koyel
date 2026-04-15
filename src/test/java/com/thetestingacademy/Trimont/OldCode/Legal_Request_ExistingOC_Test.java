@@ -1,4 +1,4 @@
-package com.thetestingacademy.Trimont;
+package com.thetestingacademy.Trimont.OldCode;
 
 import io.qameta.allure.*;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import io.qameta.allure.Description;
 import java.time.Duration;
 
 @Epic("VenReq Automation Suite")
