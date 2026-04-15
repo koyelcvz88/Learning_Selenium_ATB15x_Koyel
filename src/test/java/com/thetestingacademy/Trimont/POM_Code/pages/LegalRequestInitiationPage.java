@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.thetestingacademy.Trimont.POM_Code.utils.ScreenshotUtil; // Assuming ScreenshotUtil is created
+import com.thetestingacademy.Trimont.POM_Code.utils.ScreenshotUtil;
 
 import java.time.Duration;
 
@@ -33,42 +33,42 @@ public class LegalRequestInitiationPage {
     // Actions
     public void clickInitiateLegalRequest() {
 
-        // Log the step and take a screenshot if needed
+        // Log step + screenshot
         Allure.step("Locate Initiate Legal Request button", () -> {
             System.out.println("Looking for Initiate Legal Request button...");
             ScreenshotUtil.takeScreenshot(driver, "InitiateLegalRequestButtonLocated");
         });
 
-        // Wait until the button is visible
+        // Wait until button is visible
         WebElement btn = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(initiateBtn)
         );
 
-        // Scroll to the button
+        // Scroll into view
         js.executeScript("arguments[0].scrollIntoView({block:'center'});", btn);
 
-        // Wait until button is clickable
+        // Wait until clickable
         wait.until(ExpectedConditions.elementToBeClickable(btn));
 
-        // Log the step and take a screenshot after the button is ready
+        // Log ready state
         Allure.step("Initiate button found and ready to click", () -> {
-            System.out.println("Button found. Clicking now.");
+            System.out.println("Button found. Clicking now...");
             ScreenshotUtil.takeScreenshot(driver, "InitiateLegalRequestButtonReady");
         });
 
-        // Try clicking the button, fallback to JS click if necessary
+        // Click with fallback
         try {
             btn.click();
         } catch (Exception e) {
             js.executeScript("arguments[0].click();", btn);
         }
 
-        // Wait for the form header to be visible
+        // Wait for form to load
         WebElement header = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(formHeader)
         );
 
-        // Log the step and take a screenshot after the form is loaded
+        // Log success
         Allure.step("Form loaded successfully", () -> {
             System.out.println("Form loaded: " + header.getText());
             ScreenshotUtil.takeScreenshot(driver, "InitiateLegalRequestFormLoaded");

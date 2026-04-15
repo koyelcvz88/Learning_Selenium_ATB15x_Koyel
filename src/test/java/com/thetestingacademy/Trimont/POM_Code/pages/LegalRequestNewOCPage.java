@@ -39,9 +39,12 @@ public class LegalRequestNewOCPage {
 
         // STEP 1: Request Matter
         Allure.step("Entering Request Matter", () -> {
-            WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//label[contains(text(),'Request/Matter Name')]/following::input[1]")
-            ));
+
+            WebElement field = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//label[contains(text(),'Request/Matter Name')]/following::input[1]")
+                    )
+            );
 
             Thread.sleep(1000);
             field.click();
@@ -55,9 +58,12 @@ public class LegalRequestNewOCPage {
 
         // STEP 2: Select OC Firm
         Allure.step("Selecting Outside Counsel Firm", () -> {
-            WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//div[contains(@class,'DropdownWidget---dropdown_value') and contains(., '---Select Outside Counsel Firm Name---')]")
-            ));
+
+            WebElement dropdown = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("//div[contains(@class,'DropdownWidget---dropdown_value') and contains(., '---Select Outside Counsel Firm Name---')]")
+                    )
+            );
 
             Thread.sleep(1000);
             dropdown.click();
@@ -72,15 +78,20 @@ public class LegalRequestNewOCPage {
             Allure.step("Outside Counsel Firm selected: " + selectedOCFirmNew);
         });
 
-        // STEP 3: Enter OC Firm Name
+        // STEP 3: OC Firm Name
         Allure.step("Entering OC Firm Name", () -> {
-            WebElement field = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//strong[normalize-space()='OC Firm Name']")
-            ));
+
+            WebElement field = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("//strong[normalize-space()='OC Firm Name']")
+                    )
+            );
 
             Thread.sleep(1000);
-            actions.click(field).sendKeys(Keys.TAB).sendKeys("Auto New OC Firm").perform();
-            Thread.sleep(1000);
+            actions.click(field)
+                    .sendKeys(Keys.TAB)
+                    .sendKeys("Auto New OC Firm")
+                    .perform();
 
             ocFirmName = "Auto New OC Firm";
 
@@ -90,15 +101,17 @@ public class LegalRequestNewOCPage {
 
         // STEP 4: Justification
         Allure.step("Entering OC Justification", () -> {
+
             WebElement field = driver.findElement(
                     By.xpath("//strong[normalize-space()='New Outside Counsel Justification']")
             );
 
             Thread.sleep(1000);
-            actions.click(field).sendKeys(Keys.TAB)
+
+            actions.click(field)
+                    .sendKeys(Keys.TAB)
                     .sendKeys("Outside counsel engaged for strategic legal support.")
                     .perform();
-            Thread.sleep(1000);
 
             ocJustification = "Outside counsel engaged for strategic legal support.";
 
@@ -108,13 +121,17 @@ public class LegalRequestNewOCPage {
 
         // STEP 5: Attorney Name
         Allure.step("Entering Attorney Name", () -> {
+
             WebElement field = driver.findElement(
                     By.xpath("//strong[normalize-space()='Attorney Name']")
             );
 
             Thread.sleep(1000);
-            actions.click(field).sendKeys(Keys.TAB).sendKeys("Auto Attorney").perform();
-            Thread.sleep(1000);
+
+            actions.click(field)
+                    .sendKeys(Keys.TAB)
+                    .sendKeys("Auto Attorney")
+                    .perform();
 
             attorneyName = "Auto Attorney";
 
@@ -124,13 +141,17 @@ public class LegalRequestNewOCPage {
 
         // STEP 6: Phone
         Allure.step("Entering Phone", () -> {
+
             WebElement field = driver.findElement(
                     By.xpath("//strong[normalize-space()='Phone']")
             );
 
             Thread.sleep(1000);
-            actions.click(field).sendKeys(Keys.TAB).sendKeys("1234567890").perform();
-            Thread.sleep(1000);
+
+            actions.click(field)
+                    .sendKeys(Keys.TAB)
+                    .sendKeys("1234567890")
+                    .perform();
 
             phoneNumber = "1234567890";
 
@@ -140,6 +161,7 @@ public class LegalRequestNewOCPage {
 
         // STEP 7: Validate Phone
         Allure.step("Validate Phone", () -> {
+
             try {
                 WebElement phoneField = driver.switchTo().activeElement();
                 String value = phoneField.getAttribute("value").replaceAll("[^0-9]", "");
@@ -160,13 +182,17 @@ public class LegalRequestNewOCPage {
 
         // STEP 8: Email
         Allure.step("Entering Email", () -> {
+
             WebElement field = driver.findElement(
                     By.xpath("//strong[normalize-space()='Email']")
             );
 
             Thread.sleep(1000);
-            actions.click(field).sendKeys(Keys.TAB).sendKeys("autouser@mail.com").perform();
-            Thread.sleep(1000);
+
+            actions.click(field)
+                    .sendKeys(Keys.TAB)
+                    .sendKeys("autouser@mail.com")
+                    .perform();
 
             emailAddress = "autouser@mail.com";
 
@@ -176,6 +202,7 @@ public class LegalRequestNewOCPage {
 
         // STEP 9: Validate Email
         Allure.step("Validate Email", () -> {
+
             try {
                 WebElement emailField = driver.switchTo().activeElement();
                 String value = emailField.getAttribute("value");
@@ -196,14 +223,17 @@ public class LegalRequestNewOCPage {
 
         // STEP 10: City
         Allure.step("Entering City", () -> {
-            WebElement field = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("(//strong[normalize-space()='Address']/following::input)[1]")
-            ));
+
+            WebElement field = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("(//strong[normalize-space()='Address']/following::input)[1]")
+                    )
+            );
 
             Thread.sleep(1000);
+
             field.clear();
             field.sendKeys("Sitka");
-            Thread.sleep(1000);
 
             city = "Sitka";
 
@@ -213,15 +243,18 @@ public class LegalRequestNewOCPage {
 
         // STEP 11: State
         Allure.step("Selecting State", () -> {
-            WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("(//strong[normalize-space()='Address']/following::div[contains(@class,'DropdownWidget---dropdown_value')])[1]")
-            ));
+
+            WebElement dropdown = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            By.xpath("(//strong[normalize-space()='Address']/following::div[contains(@class,'DropdownWidget---dropdown_value')])[1]")
+                    )
+            );
 
             Thread.sleep(1000);
+
             dropdown.click();
             dropdown.sendKeys("AL");
             dropdown.sendKeys(Keys.ENTER);
-            Thread.sleep(1000);
 
             state = "AL";
 
@@ -231,11 +264,13 @@ public class LegalRequestNewOCPage {
 
         // STEP 12: Submit
         Allure.step("Click Submit button to create the Legal Request", () -> {
+
             WebElement submitBtn = driver.findElement(
                     By.xpath("//button[.//span[text()='Submit']]")
             );
 
             submitBtn.click();
+
             Thread.sleep(2000);
 
             System.out.println("Submit button clicked successfully.");

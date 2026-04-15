@@ -1,6 +1,6 @@
 package com.thetestingacademy.Trimont.POM_Code.pages;
 
-import com.thetestingacademy.Trimont.POM_Code.utils.ScreenshotUtil;
+import com.thetestingacademy.Trimont.POM_Code.utils.*;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;

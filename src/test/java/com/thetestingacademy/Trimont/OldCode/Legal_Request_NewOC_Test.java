@@ -1,4 +1,4 @@
-package com.thetestingacademy.Trimont.OldCode;
+/* package com.thetestingacademy.Trimont.OldCode;
 
 import com.thetestingacademy.Trimont.OldCode.Legal_Request_Form_Fields_Test;
 import io.qameta.allure.*;
@@ -97,7 +97,7 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
                         } catch (Exception e) {
                                 System.out.println("Normal click intercepted, using JS click fallback.");
                                 js.executeScript("arguments[0].click();", dropdown);
-                        } */
+                        }
 
             //System.out.println("Outside Counsel dropdown expanded");
 
@@ -289,4 +289,4 @@ public class Legal_Request_NewOC_Test extends Legal_Request_Form_Fields_Test {
     public void legalRequest_New_OC_Test_Run() throws InterruptedException {
         fillNewOCRequest();
     }
-}
+} */

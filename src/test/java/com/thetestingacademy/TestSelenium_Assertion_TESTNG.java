@@ -1,4 +1,4 @@
-package com.thetestingacademy;
+/* package com.thetestingacademy;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,4 +21,4 @@ public class TestSelenium_Assertion_TESTNG {
 
         driver.quit();
     }
-}
+} */

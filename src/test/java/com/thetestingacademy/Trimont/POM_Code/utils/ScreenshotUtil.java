@@ -19,23 +19,17 @@ public class ScreenshotUtil {
         attach(driver, stepName);
     }
 
-    // Core implementation to take a screenshot and attach it to Allure
+    // Core implementation
     private static void attach(WebDriver driver, String stepName) {
         try {
-            if (driver == null) {
-                System.out.println("Driver is null, cannot take screenshot.");
-                return;
-            }
+            if (driver == null) return;
 
-            // Capture screenshot as bytes
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            byte[] screenshot = ((TakesScreenshot) driver)
+                    .getScreenshotAs(OutputType.BYTES);
 
-            // Attach screenshot to Allure report
             Allure.addAttachment(stepName, new ByteArrayInputStream(screenshot));
 
-            System.out.println("Screenshot attached for step: " + stepName);
         } catch (Exception e) {
-            // Log the error and provide details
             System.out.println("Screenshot failed: " + e.getMessage());
         }
     }
