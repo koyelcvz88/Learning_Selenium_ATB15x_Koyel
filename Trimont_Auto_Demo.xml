@@ -7,13 +7,13 @@
 
     <test name="Workflow1_TC1_TC2_TC3">
         <classes>
-            <class name="com.thetestingacademy.Trimont.Legal_Request_ExistingOC_Test"/>
+            <class name="com.thetestingacademy.Trimont.OldCode.Legal_Request_ExistingOC_Test"/>
         </classes>
     </test>
 
     <test name="Workflow2_TC1_TC2_TC4">
         <classes>
-            <class name="com.thetestingacademy.Trimont.Legal_Request_NewOC_Test"/>
+            <class name="com.thetestingacademy.Trimont.OldCode.Legal_Request_NewOC_Test"/>
         </classes>
     </test>
 
