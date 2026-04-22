@@ -50,7 +50,7 @@ public class AppVWO_CompleteSignup_Task {
         email.clear();
 
         // 7. Enter valid email
-        email.sendKeys("XX@tempmail.com");
+        email.sendKeys("aookkys31@inboxs.space");
 
         // 8. Click checkbox
         driver.findElement(By.id("page-free-trial-step1-cu-gdpr-consent-checkbox")).click();
